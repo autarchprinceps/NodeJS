@@ -1,0 +1,14 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Buch", "Buch", "{99448F6E-B72D-44A6-A82B-2F7A8B65FD28}"
+	ProjectSection(SolutionItems) = preProject
+		chat.js = chat.js
+		silkveil.js = silkveil.js
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
