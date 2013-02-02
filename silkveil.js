@@ -25,7 +25,14 @@ var actions = {
     },
     'download': function (res, mapping) {
         http.get(url.parse(mapping.url), function (data) {
-            var contentDisposition = mapping.forceDownload ? 'attachment' : 'inline';
+            var contentDisposition = mapping.forceDownload ?
+                'attachment' : 'inline';
+            res.writeHead(data.statusCode, {
+                'Content-Type': mapping.contentType,
+                'Content-Disposition': contentDisposition +
+                    '; filename=' + mapping.fileName + ';'
+            });
+            data.pipe(res);
         });
     },
     'error': function (res, mapping) {
