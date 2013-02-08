@@ -6,6 +6,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Buch", "Buch", "{99448F6E-B
 		actions.js = actions.js
 		chat.js = chat.js
 		mappings.js = mappings.js
+		redirect.js = redirect.js
 		silkveil.js = silkveil.js
 	EndProjectSection
 EndProject
