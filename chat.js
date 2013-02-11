@@ -5,16 +5,25 @@ var messages = [];
 
 var server = net.createServer(function (socket) {
     sockets.push(socket);
-    for (var j = 0; j < messages.length; j++) {
-        socket.write(messages[j]);
-    }
+	var firstrun = true;
+	socket.write("Wie lautet dein Name?\n");
+	var name = "un";
     socket.on('data', function (data) {
-        messages.push(data);
+		if (firstrun) {
+			var i = data.toString().indexOf("\n");
+			name = data.toString().slice(0, i);
+			for (var j = 0; j < messages.length; j++) {
+		        socket.write(messages[j]);
+		    }
+			firstrun = false;
+			return;
+		}
+        messages.push(name + ": " + data);
         for (var i = 0; i < sockets.length; i++) {
             if (sockets[i] === socket) {
                 continue;
             } else {
-                sockets[i].write(data);
+                sockets[i].write(name + ": " + data);
             }
         }
     });
