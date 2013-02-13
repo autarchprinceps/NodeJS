@@ -4,7 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Buch", "Buch", "{99448F6E-B72D-44A6-A82B-2F7A8B65FD28}"
 	ProjectSection(SolutionItems) = preProject
 		actions.js = actions.js
+		chat.html = chat.html
 		chat.js = chat.js
+		chat.socket.io.js = chat.socket.io.js
 		mappings.js = mappings.js
 		redirect.js = redirect.js
 		silkveil.js = silkveil.js

@@ -1,11 +1,24 @@
-var http = require('http');
-var socketio = require('socket.io');
+var http = require('http').createServer(handler);
+var io = require('socket.io').listen(http);
+var fs = require('fs');
 
-var server = http.createServer(function (req, res) {
+http.listen(80);
 
-}).listen(1342);
+function handler(req, res) {
+    fs.readFile(__dirname + '/chat.html', function (err, data) {
+        if (err) {
+            res.writeHead(500);
+            return res.end('Error loading index.html');
+        }
 
-var io = socketio.listen(server);
+        res.writeHead(200);
+        res.end(data);
+    });
+}
+
 io.sockets.on('connection', function (socket) {
-	socket.on
+    socket.emit('news', { hello: 'world' });
+    socket.on('my other event', function (data) {
+        console.log(data);
+    });
 });
