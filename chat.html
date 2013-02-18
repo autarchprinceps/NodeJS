@@ -1,17 +1,18 @@
 ﻿<html>
     <head>
         <meta charset="utf-8" />
-        <script src="/socket.io/socket.io.js"></script>
-        <script>
-            var socket = io.connect();
-            socket.on('news', function (data) {
-                console.log(data);
-                socket.emit('my other event', { my: 'data' });
-            });
-        </script>
         <title>Chat</title>
     </head>
     <body>
         <h1>Chat</h1>
+        <p id="content">Content</p>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket = io.connect('http://localhost');
+            socket.on('news', function (data) {
+                document.getElementById("content").innerHTML = data.hello;
+                socket.emit('my other event', { my: 'data' });
+            });
+        </script>
     </body>
 </html>

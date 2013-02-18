@@ -1,20 +1,12 @@
-var http = require('http').createServer(handler);
-var io = require('socket.io').listen(http);
-var fs = require('fs');
+var app = require('express')();
+var server = require('http').createServer(app);
+var io = require('socket.io').listen(server);
 
-http.listen(80);
+server.listen(80);
 
-function handler(req, res) {
-    fs.readFile(__dirname + '/chat.html', function (err, data) {
-        if (err) {
-            res.writeHead(500);
-            return res.end('Error loading index.html');
-        }
-
-        res.writeHead(200);
-        res.end(data);
-    });
-}
+app.get('/', function (req, res) {
+    res.sendfile(__dirname + '/chat.html');
+});
 
 io.sockets.on('connection', function (socket) {
     socket.emit('news', { hello: 'world' });
