@@ -1,12 +1,19 @@
-var app = require('express')();
+var express = require('express');
+var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 
-server.listen(80);
+app.configure(function () {
+    app.set('view engine', 'jade');
+    app.set('views', __dirname);
+    app.use(express.static(__dirname));
+});
 
 app.get('/', function (req, res) {
-    res.sendfile(__dirname + '/chat.html');
+    res.render("chat.jade");
 });
+
+server.listen(1337);
 
 var sockets = [];
 var messages = [];
@@ -20,6 +27,7 @@ io.sockets.on('connection', function (socket) {
     for (var j = 0; j < messages.length; j++) {
         socket.emit('put', messages[j]);
     }
+    socket.set('nickname', 'Unnamed User');
     socket.on('send', function (data) {
         socket.set('nickname', data.Name);
         messages.push(data);

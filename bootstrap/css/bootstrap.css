@@ -1,14 +1,5 @@
-﻿<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Chat</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Chat">
-        <meta name="author" content="Patrick Robinson">
-        <style>
 /*!
- * Bootstrap v2.3.0
+ * Bootstrap v2.3.1
  *
  * Copyright 2012 Twitter, Inc
  * Licensed under the Apache License v2.0
@@ -6165,71 +6156,3 @@ a.badge:focus {
 .affix {
   position: fixed;
 }
-        </style>
-        <style type="text/css">
-          body {
-              padding-top: 60px;
-              padding-bottom: 40px;
-          }
-        </style>
-    </head>
-    <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <div class="brand" style="font-size:28px;">Chat</div>
-                    <div class="nav-collapse collapse">
-                        <form class="navbar-form pull-right">
-                            <div class="input-prepend">
-                                <span class="add-on">@</span>
-                                <input class="span2" id="name" type="text" placeholder="Username">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            
-            <div id="content">
-
-            </div>
-        </div>
-
-        <div class="navbar navbar-inverse navbar-fixed-bottom">
-            <div class="navbar-inner">
-                <div class="container">
-                    <div class="navbar-form pull-left input-block-level">
-                        <div class="input-prepend input-block-level">
-                            <button class="btn btn-primary" type="button" onclick="sendMessage()">Send</button>
-                            <input class="input-block-level" id="mess" type="text" value="" onkeydown="Event_Key()">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-
-        <script src="/socket.io/socket.io.js"></script>
-        <script>
-            var socket = io.connect('http://localhost');
-            socket.on('put', function (data) {
-                document.getElementById("content").innerHTML += "<b>" + data.Name + ":</b> " + data.Message + "<br>";
-            });
-            function sendMessage() {
-                var mess = document.getElementById("mess");
-                socket.emit('send', {
-                    Name: document.getElementById("name").value,
-                    Message: mess.value
-                });
-                mess.value = "";
-            }
-            function Event_Key() {
-                if (event.keyCode == 13) {
-                    sendMessage();
-                }
-            }
-        </script>
-    </body>
-</html>
