@@ -1,3 +1,4 @@
+#!/usr/bin/node
 var redirect = require('./redirect.js')('silkveiljs.com');
 var mappings = require('./mappings.js');
 var actions = require('./actions.js');
